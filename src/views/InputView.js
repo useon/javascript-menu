@@ -7,6 +7,13 @@ const InputView = {
     );
     return inputValue;
   },
+
+  async readCantFood(name) {
+    const inputValue = await Console.readLineAsync(
+      `\n${name}(이)가 못 먹는 메뉴를 입력해 주세요.\n`,
+    );
+    return inputValue;
+  },
 };
 
 export default InputView;

@@ -9,11 +9,22 @@ class Controller {
   async progress() {
     OutputView.printWelcomeMessage();
     const coachNames = await handlerErrorAndProceed(Controller.setCoachNames);
+    const coachData = await Controller.setCantFood(coachNames);
+    console.log(coachData);
   }
 
   static async setCoachNames() {
     const inputValue = await InputView.readCoachName();
     return new Coach(inputValue).result;
+  }
+
+  static async setCantFood(coachNames) {
+    const data = [];
+    for (const name of coachNames) {
+      const inputValue = await InputView.readCantFood(name);
+      data.push([name, inputValue]);
+    }
+    return data;
   }
 }
 
