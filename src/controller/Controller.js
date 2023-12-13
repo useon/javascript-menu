@@ -1,3 +1,4 @@
+import Coach from '../models/Coach.js';
 import handlerErrorAndProceed from '../utils/handleErrorAndProceed.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
@@ -7,12 +8,12 @@ class Controller {
 
   async progress() {
     OutputView.printWelcomeMessage();
-    const coachNames = await Controller.setCoachNames();
+    const coachNames = await handlerErrorAndProceed(Controller.setCoachNames);
   }
 
   static async setCoachNames() {
     const inputValue = await InputView.readCoachName();
-    return inputValue;
+    return new Coach(inputValue).result;
   }
 }
 

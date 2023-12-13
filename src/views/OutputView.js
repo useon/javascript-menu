@@ -4,6 +4,10 @@ const OutputView = {
   printWelcomeMessage() {
     Console.print('점심 메뉴 추천을 시작합니다.');
   },
+
+  printErrorMessage(message) {
+    Console.print(message);
+  },
 };
 
 export default OutputView;
