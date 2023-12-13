@@ -1,3 +1,4 @@
+import Category from '../models/Category.js';
 import Coach from '../models/Coach.js';
 import InfoCoach from '../models/InfoCoach.js';
 import handlerErrorAndProceed from '../utils/handleErrorAndProceed.js';
@@ -9,12 +10,14 @@ class Controller {
 
   async progress() {
     OutputView.printWelcomeMessage();
-    const coachNames = await handlerErrorAndProceed(Controller.setCoachNames);
-    const coachData = await handlerErrorAndProceed(
-      Controller.setCantFood,
-      coachNames,
+    const coachNamesArr = await handlerErrorAndProceed(
+      Controller.setCoachNames,
     );
-    console.log(coachData);
+    const coachDataMap = await handlerErrorAndProceed(
+      Controller.setCantFood,
+      coachNamesArr,
+    );
+    const categoryArr = new Category().result;
   }
 
   static async setCoachNames() {
