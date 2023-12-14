@@ -3,7 +3,6 @@ import { TYPE_MENU } from '../constants/Setting.js';
 class InfoCoach {
   #coachData;
   constructor(coachName, inputCantFood) {
-    console.log(coachName, inputCantFood);
     this.#validate(inputCantFood);
     this.#coachData = this.#makeInofList(coachName, inputCantFood);
   }

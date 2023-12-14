@@ -5,8 +5,7 @@ class Category {
   constructor() {
     this.#category = [];
     const numbers = this.#pick();
-    const types = this.#makeCategory(numbers);
-    this.#category.push('카테고리', types);
+    this.#category = this.#makeCategory(numbers);
   }
 
   #pick() {
