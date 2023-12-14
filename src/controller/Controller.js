@@ -21,6 +21,8 @@ class Controller {
     const categoryArr = new Category().result;
     const recommendMenuMap = new Recommendor(coachDataMap, categoryArr).result;
     OutputView.printMenuRecommendation(categoryArr, recommendMenuMap);
+    OutputView.printEndMessage();
+    return;
   }
 
   static async setCoachNames() {
