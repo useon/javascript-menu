@@ -17,6 +17,7 @@ class Controller {
       coachNameArr,
       cantFoodMap,
     );
+    OutputView.printRecommendation(categoryArr, totalRecommendationMap);
   }
 
   async #setCoachNameArr() {
