@@ -6,10 +6,10 @@ class Recommendator {
   constructor(categoryArr, coachName, cantFoodArr) {
     this.#coachRecommendationArr = [];
     const cantMenu = cantFoodArr;
-    this.#makeRecommedation(categoryArr, coachName, cantMenu);
+    this.#makeRecommedation(categoryArr, cantMenu);
   }
 
-  #makeRecommedation(categoryArr, coachName, cantMenu) {
+  #makeRecommedation(categoryArr, cantMenu) {
     categoryArr.forEach((category) => {
       const pickedMenu = this.#pickMenu(category, cantMenu);
       this.#coachRecommendationArr.push(pickedMenu);
