@@ -7,8 +7,6 @@ import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 
 class Controller {
-  constructor() {}
-
   async progress() {
     OutputView.printWelcomeMessage();
     const coachNamesArr = await handlerErrorAndProceed(

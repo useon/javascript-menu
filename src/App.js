@@ -5,8 +5,8 @@ class App {
     this.controller = new Controller();
   }
 
-  play() {
-    this.controller.progress();
+  async play() {
+    await this.controller.progress();
   }
 }
 

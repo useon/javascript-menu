@@ -14,10 +14,7 @@ class Recommendor {
   #makeRecommendList(coachDataMap, categoryArr) {
     coachDataMap.forEach((cantFood, coach) => {
       categoryArr.forEach((category, index) => {
-        const recommendMenu = this.#recommend(
-          category,
-          this.#cantMenuMap.get(coach),
-        );
+        const recommendMenu = this.#recommend(category, coach);
         if (index === 0) {
           this.#recommendMenuMap.set(coach, [recommendMenu]);
         } else {
@@ -34,13 +31,15 @@ class Recommendor {
     });
   }
 
-  #recommend(category, cantMenu) {
+  #recommend(category, coach) {
     const menus = TYPE_MENU.get(category);
-    const menusNumberArr = menus.map((menu, index) => index);
+    const menusNumberArr = menus.map((menu, index) => index + 1);
     const pickedMenuIndex = Random.shuffle(menusNumberArr)[0];
-    const pickedMenu = menus[pickedMenuIndex];
-    if (cantMenu.includes(pickedMenu)) this.#recommend(category, cantMenu);
-    if (!cantMenu.includes(pickedMenu)) return pickedMenu;
+    const pickedMenu = menus[pickedMenuIndex - 1];
+    if (this.#cantMenuMap.get(coach).includes(pickedMenu)) {
+      this.#recommend(category, coach);
+    }
+    if (!this.#cantMenuMap.get(coach).includes(pickedMenu)) return pickedMenu;
   }
 
   get result() {
