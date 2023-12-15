@@ -19,6 +19,10 @@ const OutputView = {
       Console.print(`[ ${recommendationOutPutFormat.join(' | ')} ]`);
     });
   },
+
+  printEndMessage() {
+    Console.print('\n추천을 완료했습니다.');
+  },
 };
 
 export default OutputView;
