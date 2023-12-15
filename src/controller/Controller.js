@@ -8,12 +8,27 @@ class Controller {
   async progress() {
     OutputView.printStartMessage();
     const categoryArr = new Category().result;
-    const coachNameArr = await handlerErrorAndProceed(this.setCoachNameArr);
+    const coachNameArr = await handlerErrorAndProceed(this.#setCoachNameArr);
+    const cantFoodMap = await this.#setTotalCantFoodMap(coachNameArr);
   }
 
-  async setCoachNameArr() {
+  async #setCoachNameArr() {
     const inputValue = await InputView.readCoachNames();
     return new CoachName(inputValue).result;
+  }
+
+  async #setTotalCantFoodMap(coachNameArr) {
+    const totalCantFoodMap = new Map();
+    for (const name of coachNameArr) {
+      const cantFoodArr = await this.#setCantFoodArr(name);
+      totalCantFoodMap.set(name, cantFoodArr);
+    }
+    return totalCantFoodMap;
+  }
+
+  async #setCantFoodArr(name) {
+    const inputValue = await InputView.readCantFood(name);
+    return inputValue;
   }
 }
 
