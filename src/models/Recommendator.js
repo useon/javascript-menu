@@ -3,7 +3,7 @@ import { TYPE_MENU } from '../constants/Setting.js';
 
 class Recommendator {
   #coachRecommendationArr;
-  constructor(categoryArr, coachName, cantFoodArr) {
+  constructor(categoryArr, cantFoodArr) {
     this.#coachRecommendationArr = [];
     const cantMenu = cantFoodArr;
     this.#makeRecommedation(categoryArr, cantMenu);
@@ -22,7 +22,8 @@ class Recommendator {
       .map((_, i) => i + 1);
     const pickedIndex = Random.shuffle(categoryIndexArr)[0];
     const pickedMenu = TYPE_MENU.get(category)[pickedIndex - 1];
-    if (cantMenu.includes(pickedMenu)) this.#pickMenu(category, cantMenu);
+    if (cantMenu.includes(pickedMenu))
+      return this.#pickMenu(category, cantMenu);
     const duplicationCount = this.#coachRecommendationArr.filter(
       (menu) => menu === pickedMenu,
     ).length;
