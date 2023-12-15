@@ -1,3 +1,4 @@
+import CantFood from '../models/CantFood.js';
 import Category from '../models/Category.js';
 import CoachName from '../models/CoachName.js';
 import handlerErrorAndProceed from '../utils/handleErrorAndProceed.js';
@@ -20,7 +21,10 @@ class Controller {
   async #setTotalCantFoodMap(coachNameArr) {
     const totalCantFoodMap = new Map();
     for (const name of coachNameArr) {
-      const cantFoodArr = await this.#setCantFoodArr(name);
+      const cantFoodArr = await handlerErrorAndProceed(
+        this.#setCantFoodArr,
+        name,
+      );
       totalCantFoodMap.set(name, cantFoodArr);
     }
     return totalCantFoodMap;
@@ -28,7 +32,7 @@ class Controller {
 
   async #setCantFoodArr(name) {
     const inputValue = await InputView.readCantFood(name);
-    return inputValue;
+    return new CantFood(inputValue).result;
   }
 }
 
